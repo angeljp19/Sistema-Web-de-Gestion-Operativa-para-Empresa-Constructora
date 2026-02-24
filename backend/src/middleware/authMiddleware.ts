@@ -1,0 +1,41 @@
+import { Request, Response, NextFunction } from "express";
+import jwt from "jsonwebtoken";
+import { JWT_SECRET } from "../env";
+
+export const requireAuth = (req: Request, res: Response, next: NextFunction) => {
+  // Prioridad: Authorization Bearer. Alternativa: cookie "token".
+  const authHeader = req.headers.authorization;
+  const tokenFromHeader = authHeader?.startsWith("Bearer ")
+    ? authHeader.split(" ")[1]
+    : null;
+
+  const token = tokenFromHeader || (req as any).cookies?.token;
+
+  if (!token) {
+    return res.status(401).json({ message: "No autorizado: token faltante" });
+  }
+
+  try {
+    const decoded = jwt.verify(token, JWT_SECRET as string) as {
+      id: number;
+      email: string;
+      nombre: string;
+      apellido: string;
+      planta_id: number,
+      iat: number;
+      exp: number;
+    };
+
+    req.user = {
+      id: decoded.id,
+      email: decoded.email,
+      nombre: decoded.nombre,
+      apellido: decoded.apellido,
+      planta_id: decoded.planta_id
+    };
+
+    return next();
+  } catch (err) {
+    return res.status(401).json({ message: "Token inválido o expirado" });
+  }
+};
