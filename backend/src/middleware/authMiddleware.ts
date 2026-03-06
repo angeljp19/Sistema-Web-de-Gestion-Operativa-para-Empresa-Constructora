@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
-import { JWT_SECRET } from "../env";
+
 
 export const requireAuth = (req: Request, res: Response, next: NextFunction) => {
   // Prioridad: Authorization Bearer. Alternativa: cookie "token".
@@ -16,7 +16,7 @@ export const requireAuth = (req: Request, res: Response, next: NextFunction) => 
   }
 
   try {
-    const decoded = jwt.verify(token, JWT_SECRET as string) as {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET as string) as {
       id: number;
       email: string;
       nombre: string;

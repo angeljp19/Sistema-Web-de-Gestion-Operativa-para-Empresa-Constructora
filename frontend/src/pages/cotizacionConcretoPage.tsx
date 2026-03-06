@@ -1,3 +1,4 @@
+// CotizacionConcretoPage.tsx
 import { useState } from "react";
 import { Label, TextInput, Textarea, Button } from "flowbite-react";
 import { CotizacionConcreto } from "../components/cotizacionConcreto";
@@ -56,15 +57,23 @@ export function CotizacionConcretoPage() {
   };
 
   return (
-    <div className="flex flex-col flex-1 min-h-0 w-full p-4 space-y-6">
-      <PageHeader
-        title="Cotización de Concreto"
-        subtitle="Complete la información del cliente y los datos de la cotización"
-      />
-
-      <div className="flex flex-1 min-h-0 w-fullp-4 gap-4">
-        <div className="rounded-2xl p-6 bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl flex w-1/2 overflow-y-auto">
-          <div className="absolute inset-0 bg-linear-to-br from-white/20 via-transparent to-transparent pointer-events-none" />
+    <div className="flex flex-col  lg:h-full w-full p-1 lg:p-4 gap-6 overflow-auto">
+      <div className="shrink-0">
+        <PageHeader
+          title="Cotización de Concreto"
+          subtitle="Complete la información del cliente y los datos de la cotización"
+        />
+      </div>
+      <div className="flex lg:h-full flex-col lg:flex-row  min-h-0 w-full gap-4  overflow-auto">
+        {/* Panel Formulario */}
+        <div
+          className="
+            relative w-full lg:w-1/2
+            rounded-2xl lg:h-full
+            backdrop-blur-xl shadow-2xl
+            lg:overflow-auto
+            p-6 lg:flex-1"
+        >
           <form
             onSubmit={handleSubmit}
             className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full"
@@ -113,6 +122,16 @@ export function CotizacionConcretoPage() {
               <TextInput
                 name="atencion"
                 value={form.atencion}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label>E-mail</Label>
+              <TextInput
+                type="email"
+                name="email"
+                value={form.email}
                 onChange={handleChange}
               />
             </div>
@@ -178,25 +197,58 @@ export function CotizacionConcretoPage() {
               <Button
                 type="submit"
                 className="
-                bg-yellow-400 font-semibold
-                hover:bg-yellow-300
-                focus:ring-yellow-400
-                rounded-xl
-              "
+                    bg-yellow-400 font-semibold
+                    hover:bg-yellow-300
+                    focus:ring-yellow-400
+                    rounded-xl
+                  "
               >
                 Guardar Cotización
               </Button>
             </div>
           </form>
         </div>
-
-        <div className="flex justify-center items-center w-1/2 rounded-2xl  bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl">
-          <CotizacionConcreto
-            productos={productos}
-            setProductos={setProductos}
-          />
+        <div
+          className="
+            w-full lg:w-1/2
+            rounded-2xl
+            backdrop-blur-xl shadow-2xl
+            overflow-au
+            flex
+            h-[70dvh] sm:h-[65dvh]
+            lg:h-auto lg:flex-1
+          "
+        >
+          <div className="w-full lg:h-full overflow-y-auto flex justify-center items-start lg:p-2">
+            <CotizacionConcreto
+              productos={productos}
+              setProductos={setProductos}
+            />
+          </div>
         </div>
       </div>
     </div>
   );
 }
+
+/* 
+
+        <div
+          className="
+            w-full lg:w-1/2
+            rounded-2xl
+            backdrop-blur-xl shadow-2xl
+            overflow-au
+            flex
+            h-[70dvh] sm:h-[65dvh]
+            lg:h-auto lg:flex-1
+          "
+        >
+          <div className="w-full lg:h-full overflow-y-auto flex justify-center items-start p-2">
+            <CotizacionConcreto
+              productos={productos}
+              setProductos={setProductos}
+            />
+          </div>
+        </div>
+*/

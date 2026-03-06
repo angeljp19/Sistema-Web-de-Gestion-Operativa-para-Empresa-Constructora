@@ -23,6 +23,7 @@ class EmpleadoController {
         planta_id: emp.planta_id,
         planta: emp.planta?.nombre || null, 
         activo: emp.activo,
+        en_planta: emp.en_planta,
         fecha_creacion: emp.fecha_creacion,
       }));
 

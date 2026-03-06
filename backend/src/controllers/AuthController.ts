@@ -3,7 +3,6 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import Usuario from "../models/Usuario"; 
 import RecuperarContrasena from "../models/RecuperarContraseña";
-import { JWT_SECRET } from "../env";
 import { sendEmail } from "../services/mailService/mailService";
 import { Op } from "sequelize";
 
@@ -38,7 +37,7 @@ export const login = async (req: Request, res: Response) => {
       cedula: usuario.cedula,
     };
 
-    const token = jwt.sign(payload, JWT_SECRET!, {
+    const token = jwt.sign(payload, process.env.JWT_SECRET!, {
       expiresIn: "1d"
     });
   

@@ -1,15 +1,14 @@
+import nodemailer from "nodemailer";
+import SMTPTransport from "nodemailer/lib/smtp-transport";
 
-import {MAIL_HOST, MAIL_PORT, MAIL_USER, MAIL_PASS} from "../../env"
-import nodemailer from "nodemailer"
+const options: SMTPTransport.Options = {
+  host: process.env.MAIL_HOST!,
+  port: Number(process.env.MAIL_PORT ?? 587),
+  secure: false,
+  auth: {
+    user: process.env.MAIL_USER!,
+    pass: process.env.MAIL_PASS!,
+  },
+};
 
-export const transporter = nodemailer.createTransport({
-    host: MAIL_HOST,
-    port: MAIL_PORT,
-    secure: false,
-    auth: {
-        user: MAIL_USER,
-        pass: MAIL_PASS
-    }
-
-})
-
+export const transporter = nodemailer.createTransport(options);

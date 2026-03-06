@@ -1,5 +1,7 @@
 import express from "express"
 import cors from "cors"
+import rateLimit from "express-rate-limit";
+
 import { sequelize } from "./models/database";
 import "./models/Usuario";
 import "./models/Plantas"
@@ -14,14 +16,21 @@ import escaneoEmpleado from "./routes/escaneoEmpleado"
 import productosRoutes from "./routes/productos"
 import cotizacionRoutes from "./routes/cotizacion"
 
-import { PORT, URL_ORIGIN } from "./env";
 
 const app = express()
 const corsOptions = {
-  origin: URL_ORIGIN, 
+  origin: process.env.URL_ORIGIN , 
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true
 };
+
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 100,
+  message: "Demasiadas solicitudes desde esta IP, por favor intente nuevamente después de 15 minutos"
+})
+
+app.use(limiter);
 app.use(cors(corsOptions));
 app.use(express.json())
 
@@ -34,8 +43,8 @@ app.use("/productos", productosRoutes)
 app.use("/cotizacion", cotizacionRoutes)
 
 
-sequelize.sync()
+sequelize.sync({alter: true })
   .then(() => console.log("Modelos sincronizados"))
   .catch(console.error);
-  const port = PORT || 3000;
+  const port = process.env.PORT;
 app.listen(port)

@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import e, { Request, Response } from "express";
 import HoraEscaneoEmpleados from "../models/HoraEscaneoEmpleados";
 import Empleado from "../models/Empleados";
 
@@ -46,6 +46,15 @@ class HoraEscaneoEmpleadosController {
         return res
           .status(400)
           .json({ message: "Todos los campos son obligatorios" });
+      }
+
+      const empleado = await Empleado.findByPk(empleado_id);
+      if(empleado && motivo === "entrada"){
+        empleado.en_planta = true;
+        await empleado.save();
+      }else if(empleado && motivo === "salida"){
+        empleado.en_planta = false;
+        await empleado.save();
       }
 
       const hora = await HoraEscaneoEmpleados.create({

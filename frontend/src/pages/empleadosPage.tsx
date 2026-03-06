@@ -64,7 +64,7 @@ export function EmpleadosPage() {
   if(loading)return <SkeletonLoader />
 
   return (
-    <div className="p-4 flex flex-col space-y-8">
+    <div className="p-4 flex flex-col space-y-8 overflow-auto">
       <PageHeader title="Gestion de Empleados" subtitle="Gestiona los empleados pertenecientes a la empresa"/>
       <GestionEmpleadosTable rowSelected={setRow} users={userList} />
       <div className="flex items-center justify-center">

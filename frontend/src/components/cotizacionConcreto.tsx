@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+
 import type { ChangeEvent } from "react";
 import {
   Card,
@@ -12,7 +12,6 @@ import {
   AccordionContent,
 } from "flowbite-react";
 
-import { Productos } from "../api/productos";
 
 interface Producto {
   item: number;
@@ -33,18 +32,6 @@ interface props {
 export function CotizacionConcreto(props: props) {
   //const [productos, setProductos] = useState<Producto[]>([]);
   const { productos, setProductos } = props;
-  const [productosLista, setProductosLista] = useState([]);
-  useEffect(() => {
-    const fetchProductos = async () => {
-      try {
-        const data = await Productos.getAll();
-        setProductosLista(data);
-      } catch (error) {
-        console.error("Error al cargar productos:", error);
-      }
-    };
-    fetchProductos();
-  }, []);
 
   const agregarProducto = () => {
     setProductos([
@@ -88,7 +75,7 @@ export function CotizacionConcreto(props: props) {
   };
 
   return (
-    <div className="flex flex-col h-full w-full p-4 space-y-4">
+    <div className="flex flex-col h-full w-full lg:p-4 space-y-4">
       <div className="flex-1 min-h-0 overflow-y-auto pr-2">
         <Accordion alwaysOpen>
           {productos.map((prod, index) => (
@@ -180,7 +167,7 @@ export function CotizacionConcreto(props: props) {
         </Accordion>
       </div>
 
-      <div className="flex justify-center pt-2 border-t border-white/10">
+      <div className="flex justify-end lg:justify-center p-2 border-t border-white/10">
         <Button
           onClick={agregarProducto}
           className="bg-yellow-400 hover:bg-yellow-500 text-white"

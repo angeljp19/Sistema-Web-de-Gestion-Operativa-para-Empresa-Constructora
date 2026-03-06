@@ -1,13 +1,12 @@
-import { Popover } from "flowbite-react";;
+import { Popover } from "flowbite-react";
 import { HiUser, HiCog } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
-import logo from "../assets/logo.png"
-
+import logo from "../assets/logo.png";
 
 export function Nav() {
   const user = sessionStorage.getItem("user");
   const userObj = JSON.parse(user as string);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const popoverContent = (
     <div className="w-64 p-3">
@@ -33,17 +32,26 @@ export function Nav() {
   );
 
   return (
-    <div
-      className="w-full "
-    >
-      <div className="w-full flex flex-col md:flex-row items-center md:justify-between px-4 gap-2">
+    <div className="w-full bg-gray-600 ">
+      <div className="w-full flex flex-col md:flex-row items-center md:justify-between px-4 py-2 gap-2">
         <div className="w-full flex items-center justify-between ">
-          <img className="w-1/8 cursor-pointer" onClick={() => {navigate("/cuyuniApp/mainPanel")}} src={logo} alt="logo" />
-
+          <img
+            className="lg:w-1/8 cursor-pointer w-30"
+            onClick={() => {
+              navigate("/cuyuniApp/mainPanel");
+            }}
+            src={logo}
+            alt="logo"
+          />
 
           <div className="hidden w-1/2 md:flex "></div>
 
           <div className="flex gap-4">
+            <span className="text-white hidden lg:block">
+              {" "}
+              {userObj.nombre} {userObj.apellido}
+            </span>
+
             <Popover content={popoverContent} placement="left">
               <HiUser className="w-6 h-6 text-white  cursor-pointer" />
             </Popover>

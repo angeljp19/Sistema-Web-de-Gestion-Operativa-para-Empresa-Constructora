@@ -1,3 +1,4 @@
+// CotizacionMaterialesPage.tsx
 import { useState } from "react";
 import { Label, TextInput, Textarea, Button } from "flowbite-react";
 import { CotizacionProductos } from "../components/cotizacionProductos";
@@ -54,211 +55,154 @@ export function CotizacionMaterialesPage() {
     await Cotizacion.createMateriales(productos, form);
   };
 
-return (
-    <div className="flex flex-col flex-1 min-h-0 w-full p-4 space-y-6">
-      
-      <PageHeader
-        title="Cotización de Materiales"
-        subtitle="Complete la información del cliente y los datos de la cotización"
-      />
+  return (
+    <div className="flex flex-col flex-1 h-full w-full p-1 lg:p-4 gap-6 overflow-auto">
+      <div className="shrink-0">
+        <PageHeader
+          title="Cotización de Materiales"
+          subtitle="Complete la información del cliente y los datos de la cotización"
+        />
+      </div>
 
+      <div className="flex lg:h-full flex-col lg:flex-row  min-h-0 w-full gap-4  overflow-autoo">
+        {/* Panel Formulario */}
 
-      <div className="flex flex-1 min-h-0 w-fullp-4 gap-4">
-        
-  
-     
-        <div className="rounded-2xl p-6 bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl flex w-1/2 overflow-y-auto">
-         
-          <div className="absolute inset-0 bg-linear-to-br from-white/20 via-transparent to-transparent pointer-events-none" />
-         <form
+        <div
+          className="
+            relative w-full lg:w-1/2
+            rounded-2xl lg:h-full
+            backdrop-blur-xl shadow-2xl
+            lg:overflow-auto
+            p-6 lg:flex-1"
+        >
+          <form
             onSubmit={handleSubmit}
-            className="
-
-    grid grid-cols-1 md:grid-cols-2 gap-6
-    overflow-y-auto
-  
-    w-full
-    pr-2
-  "
+            className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full"
           >
             <div className="space-y-2 col-span-1 md:col-span-2">
-              <Label className="text-white/80 font-medium">Cliente</Label>
+              <Label>Cliente</Label>
               <TextInput
                 name="cliente"
                 value={form.cliente}
                 onChange={handleChange}
                 required
-                className="
-                bg-white/10 border-white/20 text-white
-                focus:border-yellow-400 focus:ring-yellow-400
-              "
               />
             </div>
 
             <div className="space-y-2">
-              <Label className="text-white/80 font-medium">C.I / RIF</Label>
+              <Label>C.I / RIF</Label>
               <TextInput
                 name="rif"
                 value={form.rif}
                 onChange={handleChange}
                 required
-                className="
-                bg-white/10 border-white/20 text-white
-                focus:border-yellow-400 focus:ring-yellow-400
-              "
               />
             </div>
 
             <div className="space-y-2">
-              <Label className="text-white/80 font-medium">Teléfono</Label>
+              <Label>Teléfono</Label>
               <TextInput
                 name="telefono"
                 value={form.telefono}
                 onChange={handleChange}
-                className="
-                bg-white/10 border-white/20 text-white
-                focus:border-yellow-400 focus:ring-yellow-400
-              "
               />
             </div>
 
             <div className="space-y-2 col-span-1 md:col-span-2">
-              <Label className="text-white/80 font-medium">Dirección</Label>
+              <Label>Dirección</Label>
               <Textarea
                 name="direccion"
                 value={form.direccion}
                 onChange={handleChange}
                 rows={3}
-                className="
-                bg-white/10 border-white/20 text-white
-                focus:border-yellow-400 focus:ring-yellow-400
-              "
               />
             </div>
 
             <div className="space-y-2">
-              <Label className="text-white/80 font-medium">Atención</Label>
+              <Label>Atención</Label>
               <TextInput
                 name="atencion"
                 value={form.atencion}
                 onChange={handleChange}
-                className="
-                bg-white/10 border-white/20 text-white
-                focus:border-yellow-400 focus:ring-yellow-400
-              "
               />
             </div>
 
             <div className="space-y-2">
-              <Label className="text-white/80 font-medium">E-mail</Label>
+              <Label>E-mail</Label>
               <TextInput
                 type="email"
                 name="email"
                 value={form.email}
                 onChange={handleChange}
-                className="
-                bg-white/10 border-white/20 text-white
-                focus:border-yellow-400 focus:ring-yellow-400
-              "
               />
             </div>
 
             <div className="space-y-2">
-              <Label className="text-white/80 font-medium">Cotización Nº</Label>
+              <Label>Cotización Nº</Label>
               <TextInput
                 name="cotizacionNum"
                 value={form.cotizacionNum}
                 onChange={handleChange}
                 required
-                className="
-                bg-white/10 border-white/20 text-white
-                focus:border-yellow-400 focus:ring-yellow-400
-              "
               />
             </div>
 
             <div className="space-y-2">
-              <Label className="text-white/80 font-medium">Fecha</Label>
+              <Label>Fecha</Label>
               <TextInput
                 type="date"
                 name="fecha"
                 value={form.fecha}
                 onChange={handleChange}
                 required
-                className="
-                bg-white/10 border-white/20 text-white
-                focus:border-yellow-400 focus:ring-yellow-400
-              "
               />
             </div>
 
             <div className="space-y-2">
-              <Label className="text-white/80 font-medium">
-                Validez de Oferta
-              </Label>
+              <Label>Validez de Oferta</Label>
               <TextInput
                 name="validezOferta"
                 value={form.validezOferta}
                 onChange={handleChange}
-                className="
-                bg-white/10 border-white/20 text-white
-                focus:border-yellow-400 focus:ring-yellow-400
-              "
               />
             </div>
 
             <div className="space-y-2">
-              <Label className="text-white/80 font-medium">
-                Condición de Pago
-              </Label>
+              <Label>Condición de Pago</Label>
               <TextInput
                 name="condicionPago"
                 value={form.condicionPago}
                 onChange={handleChange}
-                className="
-                bg-white/10 border-white/20 text-white
-                focus:border-yellow-400 focus:ring-yellow-400
-              "
               />
             </div>
 
             <div className="space-y-2">
-              <Label className="text-white/80 font-medium">
-                Persona de Contacto
-              </Label>
+              <Label>Persona de Contacto</Label>
               <TextInput
                 name="personaContacto"
                 value={form.personaContacto}
                 onChange={handleChange}
-                className="
-                bg-white/10 border-white/20 text-white
-                focus:border-yellow-400 focus:ring-yellow-400
-              "
               />
             </div>
 
             <div className="space-y-2">
-              <Label className="text-white/80 font-medium">Nº Directo</Label>
+              <Label>Nº Directo</Label>
               <TextInput
                 name="numeroDirecto"
                 value={form.numeroDirecto}
                 onChange={handleChange}
-                className="
-                bg-white/10 border-white/20 text-white
-                focus:border-yellow-400 focus:ring-yellow-400
-              "
               />
             </div>
 
-            <div className="col-span-1 md:col-span-2 flex justify-end pt-4">
+            <div className="col-span-1 md:col-span-2 flex justify-end">
               <Button
                 type="submit"
                 className="
-                bg-yellow-400 font-semibold
-                hover:bg-yellow-300
-                focus:ring-yellow-400
-                rounded-xl
-              "
+                    bg-yellow-400 font-semibold
+                    hover:bg-yellow-300
+                    focus:ring-yellow-400
+                    rounded-xl
+                  "
               >
                 Guardar Cotización
               </Button>
@@ -266,12 +210,24 @@ return (
           </form>
         </div>
 
-     
-         <div className="flex justify-center items-center w-1/2 rounded-2xl  bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl">
-          <CotizacionProductos
-            productos={productos}
-            setProductos={setProductos}
-          />
+        {/* Panel Productos */}
+        <div
+         className="
+            w-full lg:w-1/2
+            rounded-2xl
+            backdrop-blur-xl shadow-2xl
+            overflow-au
+            flex
+            h-[70dvh] sm:h-[65dvh]
+            lg:h-auto lg:flex-1
+          "
+        >
+          <div className="w-full lg:h-full overflow-y-auto flex justify-center items-start lg:p-2">
+            <CotizacionProductos
+              productos={productos}
+              setProductos={setProductos}
+            />
+          </div>
         </div>
       </div>
     </div>

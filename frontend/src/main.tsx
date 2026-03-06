@@ -13,6 +13,7 @@ import { GestionProductosPage } from "./pages/gestionProductosPage.tsx";
 import { CotizacionMaterialesPage } from "./pages/cotizacionMateralesPage.tsx";
 import { CotizacionConcretoPage } from "./pages/cotizacionConcretoPage.tsx";
 import { UsuariosPage } from "./pages/usuariosPage.tsx";
+import { RegistroCotizacionesPage } from "./pages/registroCotizacionesPage.tsx";
 
 import { ProtectedRoute } from "./components/protectedRoute.tsx";
 
@@ -79,6 +80,10 @@ const router = createBrowserRouter([
           {
             path: "usuarios",
             element: <UsuariosPage />,
+          },
+          {
+            path: "cotizaciones",
+            element: <RegistroCotizacionesPage />,
           },
         ],
       },

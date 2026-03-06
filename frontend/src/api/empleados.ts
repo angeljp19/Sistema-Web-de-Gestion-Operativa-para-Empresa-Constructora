@@ -1,4 +1,4 @@
-import { BACK_URL } from "../env";
+const BACK_URL = import.meta.env.VITE_BACK_URL;
 
 const token = sessionStorage.getItem("token");
 

@@ -9,6 +9,8 @@ import {
 } from "flowbite-react";
 
 import { useState, useEffect } from "react";
+import { usePagination } from "../hooks/usePagination";
+import { Pagination } from "./Pagination";
 
 interface User {
   id: number;
@@ -20,7 +22,7 @@ interface User {
 
 interface tableProps {
   rowSelected: (user: User) => void;
-  users: User[]
+  users: User[];
 }
 
 export function GestionEmpleadosTable(tableProps: tableProps) {
@@ -30,11 +32,15 @@ export function GestionEmpleadosTable(tableProps: tableProps) {
   const filteredUsers = users.filter((user) =>
     `${user.nombre} ${user.apellido} ${user.cedula} ${user.planta} `
       .toLowerCase()
-      .includes(search.toLowerCase())
+      .includes(search.toLowerCase()),
   );
 
+  // paginate the filtered results
+  const { currentData, currentPage, maxPage, jump } = usePagination(
+    filteredUsers,
+    10,
+  );
 
-  
   return (
     <div className="flex flex-col space-y-5">
       <div className="sticky top-0  z-10 md:w-1/3">
@@ -57,13 +63,17 @@ export function GestionEmpleadosTable(tableProps: tableProps) {
             </TableRow>
           </TableHead>
           <TableBody className="divide-y">
-            {filteredUsers.map((user, index) => (
+            {currentData.map((user, index) => (
               <TableRow
                 onClick={() => {
                   rowSelected(user);
                   setBgRowSelected(index);
                 }}
-                className={index == bgRowSelected ? `bg-blue-700 hover:bg-blue-700 text-white` : `bg-white `}
+                className={
+                  index == bgRowSelected
+                    ? `bg-blue-700 hover:bg-blue-700 text-white`
+                    : `bg-white `
+                }
               >
                 <TableCell className="whitespace-nowrap">
                   {user.nombre}
@@ -76,6 +86,11 @@ export function GestionEmpleadosTable(tableProps: tableProps) {
           </TableBody>
         </Table>
       </div>
+      <Pagination
+        currentPage={currentPage}
+        totalPages={maxPage}
+        onPageChange={jump}
+      />
     </div>
   );
 }

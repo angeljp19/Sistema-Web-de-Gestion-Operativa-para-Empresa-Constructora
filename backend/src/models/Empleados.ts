@@ -10,6 +10,7 @@ class Empleado extends Model {
   public planta_id!: number;
   public activo!: boolean;
   public fecha_creacion!: Date;
+  public en_planta!: Boolean;
 }
 
 Empleado.init(
@@ -21,6 +22,7 @@ Empleado.init(
     planta_id: { type: DataTypes.INTEGER, allowNull: false },
     activo: { type: DataTypes.BOOLEAN, defaultValue: true },
     fecha_creacion: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
+    en_planta: { type: DataTypes.BOOLEAN, defaultValue: false },
   },
   { tableName: "empleados", sequelize, timestamps: false }
 );

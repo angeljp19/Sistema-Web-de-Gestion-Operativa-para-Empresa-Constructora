@@ -1,8 +1,9 @@
 import { Sequelize } from "sequelize";
-import {DATABASE_URL} from "../env"
+import "dotenv/config";
 
 
-export const sequelize = new Sequelize(DATABASE_URL!, {
+
+export const sequelize = new Sequelize(process.env.DATABASE_URL!, {
   dialect: "postgres",
   ssl: true,
   set: "pg",
