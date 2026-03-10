@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ErrorModal } from "../components/errorModal";
 import bgImage from "../assets/fotoCuyuni.png";
-import Logo from "../assets/logo.png";
+
 
 export function LoginPage() {
   const [email, setEmail] = useState("");
@@ -18,7 +18,7 @@ export function LoginPage() {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const res = await LoginAuth(email, password);
+      await LoginAuth(email, password);
       navigate("/cuyuniApp/mainPanel");
     } catch (err) {
       setOpenModal(!openModal);

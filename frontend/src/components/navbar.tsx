@@ -1,5 +1,5 @@
 import { Popover } from "flowbite-react";
-import { HiUser, HiCog } from "react-icons/hi";
+import { HiUser } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 

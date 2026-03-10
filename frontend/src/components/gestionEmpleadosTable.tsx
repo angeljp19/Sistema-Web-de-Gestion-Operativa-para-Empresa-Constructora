@@ -8,7 +8,7 @@ import {
   TextInput,
 } from "flowbite-react";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { usePagination } from "../hooks/usePagination";
 import { Pagination } from "./Pagination";
 

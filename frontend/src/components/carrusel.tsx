@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import React, { useMemo, useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 
 type CarouselItem = {
   id: string;
@@ -168,9 +168,8 @@ export function QuoteCarousel({
             });
             setActiveIndex(idx);
           }}
-          onPointerDown={(e) => {
-            // prevent vertical page scroll from being blocked by child clicks; keep default
-            // (no-op, but keeps place for future tweaks)
+          onPointerDown={() => {
+           
           }}
         >
           {items.map((it, idx) => (

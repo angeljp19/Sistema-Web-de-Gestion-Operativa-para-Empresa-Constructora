@@ -44,7 +44,7 @@ export function LectorQR({ horaEscaneoEmpleado }: Props) {
         }
       }
 
-      function onScanError(err: unknown) {}
+      function onScanError() {}
 
       return () => {
         scanner.clear().catch(() => {});

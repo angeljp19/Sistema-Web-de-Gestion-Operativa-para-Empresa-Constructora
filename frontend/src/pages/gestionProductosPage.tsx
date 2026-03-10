@@ -15,7 +15,7 @@ import {
   ModalBody,
   ModalHeader,
 } from "flowbite-react";
-import { HiCube, HiPlus, HiPencilAlt, HiTrash } from "react-icons/hi";
+import { HiPlus, HiPencilAlt, HiTrash } from "react-icons/hi";
 import { Productos } from "../api/productos";
 import { ErrorModal } from "../components/errorModal";
 import { PageHeader } from "../components/pageHeader";
