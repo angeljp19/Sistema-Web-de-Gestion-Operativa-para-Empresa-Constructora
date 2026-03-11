@@ -4,6 +4,11 @@ Aplicación web responsive para **cotizaciones** (materiales de construcción y 
 
 
 ---
+## Demo
+- **Live Demo:**  https://incidesk.vercel.app/](https://sistema-web-de-gestion-operativa-pa.vercel.app/
+- **Credenciales de prueba:**
+      email: demo@gmail.com
+      contraseña: 123456
 
 ## Problema
 
