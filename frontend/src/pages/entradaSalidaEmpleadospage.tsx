@@ -129,19 +129,11 @@ export function EntradaSalidadEmpleadosPage() {
       </div>
 
       {/* Tabla */}
-      <div
-        className="
-          relative flex-1 min-h-0
-          rounded-2xl p-4
-          bg-white/10
-          backdrop-blur-xl
-          border border-white/20
-          shadow-2xl
-        "
-      >
-        <div className="relative z-10 lg:h-full overflow-auto">
+      {/* Usamos el patrón de gestionEmpleadosTable para evitar contenedores rígidos */}
+      <div className="flex flex-col flex-1 min-h-0">
+        <div className="overflow-auto lg:h-full">
           <Table hoverable>
-            <TableHead className="sticky top-0 bg-black/60 backdrop-blur-md z-10">
+            <TableHead className="sticky top-0 bg-white z-10">
               <TableRow>
                 <TableHeadCell className="">Empleado</TableHeadCell>
                 <TableHeadCell className="">Cédula</TableHeadCell>
@@ -150,7 +142,7 @@ export function EntradaSalidadEmpleadosPage() {
               </TableRow>
             </TableHead>
 
-            <TableBody className="">
+            <TableBody className="w-full bg-white">
               {pageHoras.map((hora, index) => (
                 <TableRow
                   key={index}

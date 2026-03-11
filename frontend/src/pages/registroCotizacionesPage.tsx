@@ -232,19 +232,8 @@ export function RegistroCotizacionesPage() {
           </div>
         </div>
         {/* Tabla */}
-        <div
-          className="
-          relative  min-h-0
-          rounded-2xl p-4
-          bg-white/10
-          backdrop-blur-xl
-          border border-white/20
-          shadow-2xl
-          lg:h-full overflow-auto
-         
-        "
-        >
-          <div className="relative flex flex-col z-10 lg:h-full overflow-auto">
+        <div className="flex flex-col flex-1 min-h-0">
+          <div className="relative z-10 lg:h-full overflow-auto">
             {state.status === "loading" && (
               <div className="lg:h-full w-full flex items-center justify-center p-8">
                 <Spinner size="xl" />
@@ -279,7 +268,7 @@ export function RegistroCotizacionesPage() {
                     </TableHeadCell>
                   </TableHead>
 
-                  <TableBody className="divide-y">
+                  <TableBody className="divide-y bg-white">
                     {pageItems.map((r) => (
                       <TableRow
                         onClick={() => Cotizacion.getById(r.id)}
@@ -306,15 +295,17 @@ export function RegistroCotizacionesPage() {
                     ))}
                   </TableBody>
                 </Table>
-
-                <Pagination
-                  currentPage={currentPage}
-                  totalPages={maxPage}
-                  onPageChange={jump}
-                />
               </>
             )}
           </div>
+
+          {state.status === "success" && filtered.length > 0 && (
+            <Pagination
+              currentPage={currentPage}
+              totalPages={maxPage}
+              onPageChange={jump}
+            />
+          )}
         </div>
       </div>
     </div>
