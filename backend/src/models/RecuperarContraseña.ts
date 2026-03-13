@@ -54,7 +54,7 @@ RecuperarContrasena.init(
 );
 
 // Relación
-RecuperarContrasena.belongsTo(Usuario, {
+RecuperarContrasena.belongsTo(Usuario, {onDelete: "CASCADE",
   foreignKey: "usuario_id",
 });
 

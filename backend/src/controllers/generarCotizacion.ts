@@ -8,7 +8,7 @@ import CotizacionItem from "../models/CotizacionItem";
 export async function generarCotizacionConcreto(form: any, productos: any, save = true) {
   const templatePath = path.join(
     __dirname,
-    "../templates/cotizacionConcreto.xlsx",
+    "../../templates/cotizacionConcreto.xlsx",
   );
 
   const workbook = new ExcelJS.Workbook();
@@ -84,7 +84,7 @@ export async function generarCotizacionConcreto(form: any, productos: any, save 
   );
 
 
-  const outputXlsx = path.join(__dirname, "../tmp/cotizacionConcreto.xlsx");
+  const outputXlsx = path.join(__dirname, "../../tmp/cotizacionConcreto.xlsx");
   await workbook.xlsx.writeFile(outputXlsx);
 
  
@@ -122,7 +122,7 @@ export async function generarCotizacionConcreto(form: any, productos: any, save 
 export async function generarCotizacionMateriales(form: any, productos: any, save = true) {
   const templatePath = path.join(
     __dirname,
-    "../templates/cotizacionMateriales.xlsx",
+    "../../templates/cotizacionMateriales.xlsx",
   );
 
   const workbook = new ExcelJS.Workbook();
@@ -198,7 +198,7 @@ export async function generarCotizacionMateriales(form: any, productos: any, sav
   );
 
  
-  const outputXlsx = path.join(__dirname, "../tmp/cotizacion.xlsx");
+  const outputXlsx = path.join(__dirname, "../../tmp/cotizacion.xlsx");
   await workbook.xlsx.writeFile(outputXlsx);
 
   if (!save) return; // si solo queremos generar el Excel sin guardar en DB
@@ -284,10 +284,10 @@ export async function getCotizacion(id: number) {
 
   if (hasResistencia) {
     await generarCotizacionConcreto(form, productos, false);
-    return path.join(__dirname, "../tmp/cotizacionConcreto.xlsx");
+    return path.join(__dirname, "../../tmp/cotizacionConcreto.xlsx");
   } else {
     await generarCotizacionMateriales(form, productos, false);
-    return path.join(__dirname, "../tmp/cotizacion.xlsx");
+    return path.join(__dirname, "../../tmp/cotizacion.xlsx");
   }
 }
 

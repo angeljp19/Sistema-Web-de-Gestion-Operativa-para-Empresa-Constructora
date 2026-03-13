@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.post("/cotizacionMateriales", async (req, res) => {
   const { form, productos } = req.body;
-   const filePath = path.join(__dirname, "../tmp/cotizacion.xlsx");
+   const filePath = path.join(__dirname, "../../tmp/cotizacion.xlsx");
 
   try {
     await generarCotizacionMateriales(form, productos); // tu función que llena la plantilla
@@ -25,7 +25,7 @@ router.post("/cotizacionMateriales", async (req, res) => {
 });
 router.post("/cotizacionConcreto", async (req, res) => {
   const { form, productos } = req.body;
-   const filePath = path.join(__dirname, "../tmp/cotizacionConcreto.xlsx");
+   const filePath = path.join(__dirname, "../../tmp/cotizacionConcreto.xlsx");
 
   try {
     await generarCotizacionConcreto(form, productos); // tu función que llena la plantilla
